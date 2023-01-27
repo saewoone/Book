@@ -4,7 +4,16 @@
         <div class="row">
             <div class="col-md-6">
                 <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
-            </div>
+                {{#userName}}
+                    Logged in as: <span id="user">{{userName}}</span>
+                    <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+                {{/userName}}
+                {{^userName}}
+                    <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+                {{/userName}}
+            </div><!--userName있으면 위에거, 없으면 아래거--><!--구글로그인 버튼 누르면 구글로 감(구글에서 정해놓은 url)-->
+            <!--구글에서 승인된 리디렉션 URI 설정해줬기 때문에 가능-->
+            <!--구글이 준 정보는 SecurityConfig로 받아옴..--><!--그 다음에 CustomOAuth2UserService의 loadUser로 들어감-->
         </div>
     <!--목록 출력 영역-->
     <table class="table table-horizontal table-bordered">
